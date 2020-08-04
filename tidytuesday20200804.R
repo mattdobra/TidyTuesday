@@ -9,7 +9,7 @@ energy_types <- tuesdata$energy_types
 dat <- energy_types %>% 
     group_by(country) %>% 
     mutate(share2016 = 1-`2016`/sum(`2016`)) %>% 
-    mutate(share2017 = 1-`2018`/sum(`2018`)) %>% 
+    mutate(share2017 = 1-`2017`/sum(`2017`)) %>% 
     mutate(share2018 = 1-`2018`/sum(`2018`)) %>% 
     filter(type == "Conventional thermal")
     
