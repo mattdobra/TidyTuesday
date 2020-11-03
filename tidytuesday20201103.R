@@ -21,12 +21,6 @@ fit2 <- fit2 %>%
 
 fit2$posneg <- ifelse(fit2$estimate<0, "neg", "pos")
 
-ggplot(data = fit2, aes(y = category, x = estimate)) +
-    geom_col(aes(fill = posneg)) +
-    scale_fill_manual(name = "Large Items",
-                      labels = c("Cost Less", "More"),
-                      values = c("pos" = "#003399", "neg" = "#ffcc00"))
-
 theme_set(theme_bw())
 
 ikeaplot <- ggplot(data = fit2, aes(y = reorder(category, estimate), x = estimate, label = estimate)) +
