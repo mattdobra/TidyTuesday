@@ -8,8 +8,7 @@ ikea2 <- ikea %>%
     mutate(volume=depth*width*height*.000001) %>% 
     drop_na(volume) %>% 
     select(-sellable_online, -other_colors, -short_description, -item_id, -name, -link, -old_price, -designer)
-
-fit2 <- ikea2 %>% 
+ 
     group_by(category) %>% 
     do(fit = tidy(lm(price ~ volume, data=.))) %>% 
     unnest(fit)
