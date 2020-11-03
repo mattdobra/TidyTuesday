@@ -1,6 +1,11 @@
 library(tidyverse)
 library(gridExtra)
 library(tvthemes)
+# library(extrafont)
+extrafont::loadfonts()
+extrafont::loadfonts(device = "win")
+
+extrafont::font_import()
 
 tuesdata <- tidytuesdayR::tt_load('2020-08-11')
 avatar <- tuesdata$avatar
@@ -22,16 +27,22 @@ diravg <- dat1 %>%
     arrange(-avgrat) %>% 
     mutate(episodes = ifelse(eps==1, paste(eps, "", "Episode"), paste(eps, "", "Episodes")))
 
+import_avatar()
+
 diravg %>% ggplot() +
-    geom_bar(aes(x = reorder(director, avgrat), y = avgrat),
-              position = "dodge", stat = "identity") +
+    geom_bar(aes(x = reorder(director, avgrat), y = avgrat, fill=director),
+              position = "dodge", stat = "identity", show.legend = FALSE) +
     geom_text(aes(x = reorder(director, avgrat), y = 0, label = episodes), 
-              position = position_nudge(y = 1)) +
+              position = position_nudge(y = 2),
+              family = "Slayer") +
     labs(y = "Average IMDB Rating",
          x = "Director") +
-    scale_fill_avatar() +
+    scale_color_avatar(palette = "EarthKingdom") +
+    scale_fill_avatar(palette = "EarthKingdom") +
     scale_y_continuous(expand = c(0,0)) +
-    theme_classic() +
-    coord_flip() 
-    
+    coord_flip() +
+    labs(title = "Avatar Directors") +
+    theme_avatar(title.font = "Slayer",
+                  text.font = "Slayer") 
+
 
