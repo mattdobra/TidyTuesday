@@ -1,6 +1,8 @@
 library(tidyverse)
 library(broom)
 
+## IKEA
+
 tuesdata <- tidytuesdayR::tt_load('2020-11-03')
 ikea <- tuesdata$ikea
 
@@ -19,7 +21,14 @@ fit2 <- fit2 %>%
     arrange(desc(estimate)) %>% 
     mutate(estimate = floor(estimate))
 
-fit2$posneg <- ifelse(fit2$estimate<0, "neg", "pos")
+# Start of Initial idea...changed to a lollipop.  
+# fit2$posneg <- ifelse(fit2$estimate<0, "neg", "pos")
+# 
+# ggplot(data = fit2, aes(y = category, x = estimate)) +
+#     geom_col(aes(fill = posneg)) +
+#     scale_fill_manual(name = "Large Items",
+#                       labels = c("Cost Less", "More"),
+#                       values = c("pos" = "#003399", "neg" = "#ffcc00"))
 
 theme_set(theme_bw())
 

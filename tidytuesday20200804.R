@@ -2,6 +2,8 @@ library(tidyverse)
 library(ggmap)
 library(rnaturalearth)
 
+## GREENENERGY
+
 tuesdata <- tidytuesdayR::tt_load('2020-08-04')
 
 energy_types <- tuesdata$energy_types
