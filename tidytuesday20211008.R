@@ -48,14 +48,14 @@ dat <- dat %>%
     mutate(ineq = pct90/pct10)
 
 dat %>% ggplot() +
-    geom_sf(aes(fill = ineq)) +
-    coord_sf() +
+    geom_sf(aes(fill = ineq), show.legend = FALSE) +
+    coord_sf(crs = st_crs(5070)) +
     theme_void() +
     labs(title = "Wage Inequality of Registered Nurses",
          subtitle = "Ratio of 90th Percentile to 10th Percentile Wages",
          fill = "Ratio",
          caption = "#TidyTuesday Project by @mattdobra") +
-    theme(legend.position="bottom") +
+    # theme(legend.position="bottom") +
     scale_fill_gradient(low = "navajowhite", high = "indianred")
 
 
@@ -82,3 +82,4 @@ dat2 %>% ggplot() +
          caption = "#TidyTuesday Project by @mattdobra") +
     theme(legend.position="bottom") +
     scale_fill_gradient(low = "darkslategray1", high = "darkslateblue", labels = percent)
+
